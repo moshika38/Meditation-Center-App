@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Mediation Center',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-       routerConfig: AppRouting().appRouting,
+       routerConfig: AppRouting().appRouter,
     );
   }
 }

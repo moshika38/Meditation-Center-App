@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meditation_center/components/secondary.buttons.dart';
+import 'package:meditation_center/components/app.logo.dart';
+import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/utils/app.colors.dart';
 
 class SplitScreen extends StatelessWidget {
@@ -21,11 +22,7 @@ class SplitScreen extends StatelessWidget {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),
-                Image.asset(
-                  "assets/logo/logo.png",
-                  width: 120,
-                  height: 120,
-                ),
+                AppLogo(),
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.01,
                 ),
@@ -35,7 +32,8 @@ class SplitScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
                 Spacer(),
-                SecondaryButtons(
+                AppButtons(
+                  isPrimary: false,
                   text: "Get Start",
                   onTap: () {
                     context.push('/login');
