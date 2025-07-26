@@ -7,6 +7,18 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.whiteColor,
     primaryColor: AppColors.primaryColor,
     // fontFamily: GoogleFonts.poppins().fontFamily,
+    appBarTheme: AppBarTheme(
+      backgroundColor: AppColors.primaryColor,
+      titleTextStyle: TextStyle(
+        fontSize: 22,
+        color: AppColors.whiteColor,
+        fontWeight: FontWeight.w400,
+      ),
+      iconTheme: IconThemeData(
+        color: AppColors.whiteColor,
+      ),
+    ),
+     
     fontFamily: GoogleFonts.raleway().fontFamily,
     textTheme: TextTheme(
       bodyLarge: TextStyle(

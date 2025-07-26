@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meditation_center/presentation/auth/create.screen.dart';
-import 'package:meditation_center/presentation/auth/forgot.password.dart';
-import 'package:meditation_center/presentation/auth/login.screen.dart';
-import 'package:meditation_center/presentation/split/split.screen.dart';
+import 'package:meditation_center/presentation/screens/auth/create.screen.dart';
+import 'package:meditation_center/presentation/screens/auth/forgot.password.dart';
+import 'package:meditation_center/presentation/screens/auth/login.screen.dart';
+import 'package:meditation_center/presentation/screens/main/main.screen.dart';
+import 'package:meditation_center/presentation/screens/split/split.screen.dart';
 
    final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 class AppRouting {
 
  final GoRouter appRouter = GoRouter(
   navigatorKey: _rootNavigatorKey,
-  initialLocation: '/',
+  initialLocation: '/main',
   routes: [
     GoRoute(
       path: '/',
@@ -32,6 +33,12 @@ class AppRouting {
       name: 'forgot',
       builder: (context, state) => const ForgotPassword(),
     ),
+    GoRoute(
+      path: '/main',
+      name: 'main',
+      builder: (context, state) => const MainScreen(),
+    ),
+    
   ],
 );
 }

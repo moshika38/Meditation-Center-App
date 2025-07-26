@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     width: double.infinity,
                     height: 50,
                     onTap: () {
-                      // Handle login logic here
+                      context.pushReplacement('/main');
                     },
                   ),
                   SizedBox(height: MediaQuery.of(context).size.height * 0.1),
