@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meditation_center/components/notice.card.dart';
 
 class HomePage extends StatelessWidget {
   final VoidCallback onTap;
@@ -6,36 +7,20 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text("Menu", style: Theme.of(context).textTheme.bodySmall),
-              GestureDetector(
-                onTap: onTap,
-                child: Text(
-                  "See all",
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ),
-            ],
-          ),
-          Card(
-            child: Row(
-              children: [
-                Image.asset("assets/icons/circle.png", width: 50, height: 50),
-                const SizedBox(width: 10),
-                Text(
-                  "Meditation",
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-              ],
-            ),
-          )
-        ],
+    return SingleChildScrollView(
+      physics: const BouncingScrollPhysics(),
+      child: Padding(
+        padding: const EdgeInsets.only(top: 20, left: 20, right: 20),
+        child: Column(
+          children: [
+            
+            
+            SizedBox(height: 20),
+            NoticeCard(),
+            NoticeCard(),
+            NoticeCard(),
+          ],
+        ),
       ),
     );
   }
