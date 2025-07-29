@@ -4,6 +4,7 @@ import 'package:meditation_center/presentation/pages/booking/booking.page.dart';
 import 'package:meditation_center/presentation/pages/home/home.page.dart';
 import 'package:meditation_center/presentation/pages/notification/notification.page.dart';
 import 'package:meditation_center/presentation/pages/post/post.page.dart';
+import 'package:meditation_center/presentation/pages/room/chat.room.page.dart';
 import 'package:meditation_center/utils/app.colors.dart';
 
 class MainScreen extends StatelessWidget {
@@ -45,7 +46,7 @@ class MainScreen extends StatelessWidget {
                 indicatorColor: AppColors.primaryColor,
                 tabs: [
                   Tab(icon: Icon(Icons.home_rounded, size: 25)),
-                  Tab(icon: Icon(Icons.video_library_rounded, size: 25)),
+                  Tab(icon: Icon(Icons.chat, size: 25)),
                   Tab(icon: Icon(Icons.add_circle_rounded, size: 25)),
                   Tab(icon: Icon(Icons.calendar_month_rounded, size: 25)),
                   Tab(icon: Icon(Icons.notifications, size: 25)),
@@ -57,7 +58,7 @@ class MainScreen extends StatelessWidget {
                 // HomePage
                 HomePage(),
                 // PlaylistPage
-                // PlaylistPage(),
+                ChatRoomPage(),
 
                 // PostPage
                 PostPage(),
