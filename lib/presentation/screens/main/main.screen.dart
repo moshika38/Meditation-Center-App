@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:meditation_center/presentation/pages/booking/booking.page.dart';
 import 'package:meditation_center/presentation/pages/home/home.page.dart';
 import 'package:meditation_center/presentation/pages/notification/notification.page.dart';
-import 'package:meditation_center/presentation/pages/play/playlist.page.dart';
 import 'package:meditation_center/presentation/pages/post/post.page.dart';
 import 'package:meditation_center/utils/app.colors.dart';
 
@@ -58,7 +57,7 @@ class MainScreen extends StatelessWidget {
                 // HomePage
                 HomePage(),
                 // PlaylistPage
-                PlaylistPage(),
+                // PlaylistPage(),
 
                 // PostPage
                 PostPage(),
