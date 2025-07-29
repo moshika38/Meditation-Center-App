@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:meditation_center/presentation/pages/booking/booking.page.dart';
 import 'package:meditation_center/presentation/pages/home/home.page.dart';
 import 'package:meditation_center/presentation/pages/notification/notification.page.dart';
@@ -15,7 +16,7 @@ class MainScreen extends StatelessWidget {
       length: 5, // number of tabs
       child: Builder(
         builder: (BuildContext innerContext) {
-          final controller = DefaultTabController.of(innerContext);
+          // final controller = DefaultTabController.of(innerContext);
           return Scaffold(
             appBar: AppBar(
               title: Padding(
@@ -28,7 +29,9 @@ class MainScreen extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.push('/settings');
+                    },
                     icon: Icon(Icons.account_circle),
                     color: AppColors.whiteColor,
                     iconSize: 40,
@@ -53,14 +56,10 @@ class MainScreen extends StatelessWidget {
             body: TabBarView(
               children: [
                 // HomePage
-                HomePage(
-                  onTap: () {
-                    controller.animateTo(3);
-                  },
-                ),
+                HomePage(),
                 // PlaylistPage
                 PlaylistPage(),
-                
+
                 // PostPage
                 PostPage(),
 

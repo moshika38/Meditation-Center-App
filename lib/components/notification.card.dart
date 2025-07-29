@@ -19,8 +19,7 @@ class NotificationCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      // Icon(Icons.notifications, size: 18, color: AppColors.gray),
-
+ 
                       Container(
                         width: 12,
                         height: 12,
@@ -29,9 +28,6 @@ class NotificationCard extends StatelessWidget {
                           shape: BoxShape.circle,
                         ),
                       ),
-
-
-
 
                       const SizedBox(width: 8),
                       Text("Mediation Center",
@@ -45,13 +41,12 @@ class NotificationCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 5),
                 child: Text(
-                  
                   "Hello! welcome to our new application here you can fine new updates and new events, you can publish or share your experiance with othere ",
                   style: Theme.of(context).textTheme.bodySmall!.copyWith(
                         color: AppColors.gray,
                       ),
-                      overflow: TextOverflow.ellipsis,
-                      maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 4,
                 ),
               ),
             ],

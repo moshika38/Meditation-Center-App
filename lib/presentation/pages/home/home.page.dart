@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:meditation_center/components/notice.card.dart';
 
 class HomePage extends StatelessWidget {
-  final VoidCallback onTap;
-  const HomePage({super.key, required this.onTap});
+   
+  const HomePage({super.key, });
 
   @override
   Widget build(BuildContext context) {

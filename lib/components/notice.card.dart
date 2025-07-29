@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:meditation_center/presentation/pages/comments/comment.page.dart';
 import 'package:meditation_center/utils/app.colors.dart';
 
 class NoticeCard extends StatelessWidget {
@@ -8,74 +9,78 @@ class NoticeCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 20),
-      child: Container(
-        child: Column(
-          children: [
-            // user info
-            Row(
-              children: [
-                CircleAvatar(
-                  radius: 25,
-                  backgroundImage: NetworkImage(
-                    "https://randomuser.me/api/portraits/men/1.jpg",
-                  ),
+      child: Column(
+        children: [
+          // user info
+          Row(
+            children: [
+              CircleAvatar(
+                radius: 25,
+                backgroundImage: NetworkImage(
+                  "https://randomuser.me/api/portraits/men/1.jpg",
                 ),
-                const SizedBox(width: 10),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "SAP Moshika",
-                      style: Theme.of(context).textTheme.bodySmall,
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      "1 min ago",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodySmall!
-                          .copyWith(color: AppColors.gray, fontSize: 12),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 15),
-
-            // content
-            Container(
-              width: double.infinity,
-              height: 350,
-              child: Column(
+              ),
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _imageCard(context, false),
-                  const SizedBox(height: 10),
-                  _imageCard(context, true),
+                  Text(
+                    "SAP Moshika",
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
+                  SizedBox(height: 2),
+                  Text(
+                    "1 min ago",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall!
+                        .copyWith(color: AppColors.gray, fontSize: 12),
+                  ),
                 ],
               ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text("20 like", style: Theme.of(context).textTheme.bodySmall),
-                Text("2 comments",
-                    style: Theme.of(context).textTheme.bodySmall),
-              ],
-            ),
+            ],
+          ),
 
-            const SizedBox(height: 30),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          const SizedBox(height: 15),
+
+          // content
+          SizedBox(
+            width: double.infinity,
+            child: Column(
               children: [
-                _actionBtn(context, Icons.thumb_up, "Like", () {}),
-                _actionBtn(context, Icons.comment, "Comment", () {}),
-                _actionBtn(context, Icons.share_outlined, "Share", () {}),
+                _imageCard(context, false),
+                const SizedBox(height: 10),
+                _imageCard(context, true),
               ],
             ),
-            const SizedBox(height: 30),
-          ],
-        ),
+          ),
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text("20 like", style: Theme.of(context).textTheme.bodySmall),
+              Text("2 comments", style: Theme.of(context).textTheme.bodySmall),
+            ],
+          ),
+
+          const SizedBox(height: 30),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              _actionBtn(context, Icons.thumb_up, "Like", () {}),
+              _actionBtn(
+                context,
+                Icons.comment,
+                "Comment",
+                () {
+                  CommentPage.bottomSheet(context);
+                },
+              ),
+              _actionBtn(context, Icons.share_outlined, "Share", () {}),
+            ],
+          ),
+          const SizedBox(height: 30),
+        ],
       ),
     );
   }
@@ -108,22 +113,22 @@ class NoticeCard extends StatelessWidget {
         Image.asset(
           'assets/jpg/IMG-20240412-WA0001.jpg',
           width: MediaQuery.of(context).size.width * 0.43,
-          height: MediaQuery.of(context).size.height * 0.2,
-          fit: BoxFit.cover,
+          height: 150,
+          fit: BoxFit.contain,
         ),
         Stack(
           children: [
             Image.asset(
               'assets/jpg/IMG-20240412-WA0001.jpg',
               width: MediaQuery.of(context).size.width * 0.43,
-              height: MediaQuery.of(context).size.height * 0.2,
-              fit: BoxFit.cover,
+              height: 150,
+              fit: BoxFit.contain,
             ),
             lastChild
                 ? Container(
                     color: const Color.fromARGB(143, 0, 0, 0),
                     width: MediaQuery.of(context).size.width * 0.43,
-                    height: MediaQuery.of(context).size.height * 0.2,
+                    height: 200,
                     child: Center(
                         child: Text(
                       "4 +",
