@@ -98,8 +98,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     text: "Login",
                     width: double.infinity,
                     height: 50.h,
-                    onTap: () {
-                      context.pushReplacement('/main');
+                    icon: Icons.login,
+                    onTap: () { 
+                      context.push('/verify');
+                       
                     },
                   ),
                    

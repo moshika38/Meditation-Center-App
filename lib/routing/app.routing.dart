@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meditation_center/presentation/screens/auth/Verify.screen.dart';
 import 'package:meditation_center/presentation/screens/auth/create.screen.dart';
 import 'package:meditation_center/presentation/screens/auth/forgot.password.dart';
 import 'package:meditation_center/presentation/screens/auth/login.screen.dart';
@@ -12,7 +13,7 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 class AppRouting {
   final GoRouter appRouter = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/main',
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
@@ -33,6 +34,11 @@ class AppRouting {
         path: '/forgot',
         name: 'forgot',
         builder: (context, state) => const ForgotPassword(),
+      ),
+      GoRoute(
+        path: '/verify',
+        name: 'verify',
+        builder: (context, state) => const VerifyScreen(),
       ),
       GoRoute(
         path: '/main',

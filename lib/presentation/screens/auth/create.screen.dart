@@ -134,6 +134,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   text: "Create",
                   width: double.infinity,
                   height: 50.h,
+                  icon: Icons.done_all_outlined,
                   onTap: () {
                     // Handle login logic here
                   },
