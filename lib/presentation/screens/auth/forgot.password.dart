@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/app.logo.dart';
@@ -19,28 +20,27 @@ class _ForgotPasswordState extends State<ForgotPassword> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: SingleChildScrollView(
-            child: Column(
+          child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05.h),
                 Center(
                   child: AppLogo(
-                    width: 100,
-                    height: 100,
+                    width: 100.w,
+                    height: 100.h,
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05.h),
                 Text(
                   "Forgot Password",
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                 Text(
                   "Enter your email address to receive a link to reset your password.",
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.02.h),
                 AppInput(
                   controller: forgotPasswordController,
                   hintText: "Email address",
@@ -52,7 +52,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     });
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.03.h),
                 AppButtons(
                   icon: Icons.send  ,
                   isPrimary: true,
@@ -63,7 +63,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                     // Handle login logic here
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.25),
+                Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -88,7 +88,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   ],
                 )
               ],
-            ),
+            
           ),
         ),
       ),
