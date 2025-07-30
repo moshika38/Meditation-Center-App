@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
@@ -19,23 +20,23 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset:
+          false,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: SingleChildScrollView(
-            child: LayoutBuilder(builder: (context, constraints) {
- 
-              return Column(
+          child:   Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                   SizedBox(height: 30.h),
                   Center(
                     child: AppLogo(
                       width: 100,
                       height: 100,
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                  Spacer(),
+                   
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
                     child: Text(
@@ -43,7 +44,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                   SizedBox(height: 20.h),
                   AppInput(
                     controller: emailController,
                     hintText: "Email address",
@@ -55,7 +56,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     },
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                   
+                   SizedBox(height: 20.h),
                   AppInput(
                     controller: passwordController,
                     obscureText: obscureText,
@@ -70,7 +72,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       });
                     },
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                   SizedBox(height: 20.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -89,7 +91,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                   
+                   SizedBox(height: 20.h),
                   AppButtons(
                     isPrimary: true,
                     text: "Login",
@@ -99,7 +102,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       context.pushReplacement('/main');
                     },
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.1),
+                   
+                  Spacer(),
                   Center(
                     child: Text(
                       "OR",
@@ -108,7 +112,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                     ),
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                   SizedBox(height: 20.h),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -118,7 +122,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       _socialIcon("assets/icons/call.png", 38, 38),
                     ],
                   ),
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.08),
+
+                  Spacer(),
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -147,9 +153,9 @@ class _LoginScreenState extends State<LoginScreen> {
                     ],
                   ),
                 ],
-              );
-            }),
-          ),
+              ),
+             
+           
         ),
       ),
     );

@@ -5,19 +5,19 @@ import 'package:meditation_center/presentation/screens/auth/forgot.password.dart
 import 'package:meditation_center/presentation/screens/auth/login.screen.dart';
 import 'package:meditation_center/presentation/screens/main/main.screen.dart';
 import 'package:meditation_center/presentation/screens/settings/settings.screen.dart';
-import 'package:meditation_center/presentation/screens/split/split.screen.dart';
+import 'package:meditation_center/presentation/screens/splash/splash.screen.dart';
 
 final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppRouting {
   final GoRouter appRouter = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/main',
+    initialLocation: '/login',
     routes: [
       GoRoute(
         path: '/',
-        name: 'split',
-        builder: (context, state) => const SplitScreen(),
+        name: '/splash',
+        builder: (context, state) => const SplashScreen(),
       ),
       GoRoute(
         path: '/login',

@@ -19,6 +19,7 @@ class MainScreen extends StatelessWidget {
           // final controller = DefaultTabController.of(innerContext);
           return Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
               title: Padding(
                 padding: const EdgeInsets.only(left: 10),
                 child: Text(

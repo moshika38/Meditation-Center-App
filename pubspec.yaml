@@ -37,6 +37,8 @@ dependencies:
   google_fonts: ^6.2.1
   go_router: ^16.0.0
   video_player: ^2.10.0
+  device_preview: ^1.2.0
+  flutter_screenutil: ^5.9.3
 
 dev_dependencies:
   flutter_test:

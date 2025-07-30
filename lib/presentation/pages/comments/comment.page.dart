@@ -28,7 +28,7 @@ class CommentPage {
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (context, index) {
-                      return CommentCard(isNotCurrentUser: false,);
+                      return CommentCard(isNotCurrentUser: true,);
                     },
                   ),
                 ),

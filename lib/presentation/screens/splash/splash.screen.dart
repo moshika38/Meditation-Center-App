@@ -4,8 +4,8 @@ import 'package:meditation_center/components/app.logo.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/utils/app.colors.dart';
 
-class SplitScreen extends StatelessWidget {
-  const SplitScreen({super.key});
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

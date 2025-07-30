@@ -10,36 +10,34 @@ class ChatRoomPage extends StatelessWidget {
     final comments = List.generate(
       30,
       (index) => index % 2 == 0,
-    );  
+    );
 
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                reverse: true,  
-                itemCount: comments.length,
-                itemBuilder: (context, index) {
-                  return CommentCard(isNotCurrentUser: comments[index]);
-                },
-              ),
+    return Padding(
+      padding: const EdgeInsets.all(20),
+      child: Column(
+        children: [
+          Expanded(
+            child: ListView.builder(
+              reverse: true,
+              itemCount: comments.length,
+              itemBuilder: (context, index) {
+                return CommentCard(isNotCurrentUser: comments[index]);
+              },
             ),
-            const SizedBox(height: 10),
-            Row(
-              children: [
-                Expanded(
-                  child: AppInput(
-                    hintText: "Type your message",
-                    prefixIcon: Icons.type_specimen,
-                    suffixIcon: Icons.send,  
-                  ),
+          ),
+          const SizedBox(height: 10),
+          Row(
+            children: [
+              Expanded(
+                child: AppInput(
+                  hintText: "Type your message",
+                  prefixIcon: Icons.type_specimen,
+                  suffixIcon: Icons.send,
                 ),
-              ],
-            ),
-          ],
-        ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
