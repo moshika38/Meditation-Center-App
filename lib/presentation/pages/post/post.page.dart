@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/utils/app.colors.dart';
 
@@ -87,14 +88,14 @@ class PostPage extends StatelessWidget {
               color: AppColors.gray,
             ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.h),
           borderSide: const BorderSide(
             color: AppColors.primaryColor,
             width: 1.5,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(30),
+          borderRadius: BorderRadius.circular(30.h),
           borderSide: const BorderSide(
             color: AppColors.primaryColor,
             width: 1.5,

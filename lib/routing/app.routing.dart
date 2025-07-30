@@ -12,7 +12,7 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 class AppRouting {
   final GoRouter appRouter = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/',
+    initialLocation: '/main',
     routes: [
       GoRoute(
         path: '/',

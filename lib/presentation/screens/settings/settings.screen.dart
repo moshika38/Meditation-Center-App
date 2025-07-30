@@ -11,14 +11,17 @@ class SettingsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset:
-          false,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: GestureDetector(
-            onTap: () {
-              context.pop();
-            },
-            child: const Icon(Icons.arrow_back_ios, size: 16)),
+          onTap: () {
+            context.pop();
+          },
+          child: const Icon(
+            Icons.arrow_back,
+            size: 16,
+          ),
+        ),
         backgroundColor: AppColors.primaryColor,
         title: Text(
           'Account settings',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meditation_center/utils/app.colors.dart';
 
 class UserCard extends StatelessWidget {
@@ -13,7 +14,7 @@ class UserCard extends StatelessWidget {
         children: [
           Center(
             child: CircleAvatar(
-              radius: 60,
+              radius: 60.h.w,
               backgroundImage: NetworkImage(
                 "https://randomuser.me/api/portraits/men/1.jpg",
               ),

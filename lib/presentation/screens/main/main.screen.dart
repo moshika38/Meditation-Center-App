@@ -4,7 +4,7 @@ import 'package:meditation_center/presentation/pages/booking/booking.page.dart';
 import 'package:meditation_center/presentation/pages/home/home.page.dart';
 import 'package:meditation_center/presentation/pages/notification/notification.page.dart';
 import 'package:meditation_center/presentation/pages/post/post.page.dart';
-import 'package:meditation_center/presentation/pages/room/chat.room.page.dart';
+import 'package:meditation_center/presentation/pages/chat%20room/chat.room.page.dart';
 import 'package:meditation_center/utils/app.colors.dart';
 
 class MainScreen extends StatelessWidget {
