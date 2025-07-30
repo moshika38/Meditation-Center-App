@@ -28,11 +28,11 @@ class _LoginScreenState extends State<LoginScreen> {
           child:   Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                   SizedBox(height: 30.h),
+                   SizedBox(height: 20.h),
                   Center(
                     child: AppLogo(
-                      width: 100,
-                      height: 100,
+                      width: 100.w,
+                      height: 100.h,
                     ),
                   ),
                   Spacer(),
@@ -46,6 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                    SizedBox(height: 20.h),
                   AppInput(
+                    
                     controller: emailController,
                     hintText: "Email address",
                     prefixIcon: Icons.email_outlined,
@@ -97,7 +98,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     isPrimary: true,
                     text: "Login",
                     width: double.infinity,
-                    height: 50,
+                    height: 50.h,
                     onTap: () {
                       context.pushReplacement('/main');
                     },

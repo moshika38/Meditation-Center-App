@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
@@ -27,25 +28,24 @@ class _CreateScreenState extends State<CreateScreen> {
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: SingleChildScrollView(
-            child: Column(
+          child:  Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                 SizedBox(height: 20.h),
                 Center(
                   child: AppLogo(
-                    width: 100,
-                    height: 100,
+                    width: 100.w,
+                    height: 100.h,
                   ),
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                  
+                Spacer(),
                 Text(
                   "Create Your Account",
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
 
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                 SizedBox(height: 20.h),
                 AppInput(
                   controller: nameController,
                   hintText: "Full name",
@@ -57,7 +57,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     });
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                 SizedBox(height: 20.h),
                 AppInput(
                   controller: emailController,
                   hintText: "Email address",
@@ -69,7 +69,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     });
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                 SizedBox(height: 20.h),
                 AppInput(
                   controller: passwordController,
                   obscureText: obscureText1,
@@ -84,7 +84,7 @@ class _CreateScreenState extends State<CreateScreen> {
                     });
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                 SizedBox(height: 20.h),
                 AppInput(
                   controller: conformPasswordController,
                   obscureText: obscureText2,
@@ -99,7 +99,8 @@ class _CreateScreenState extends State<CreateScreen> {
                     });
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                 SizedBox(height: 20.h),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -125,17 +126,18 @@ class _CreateScreenState extends State<CreateScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                 SizedBox(height: 20.h),
+
                 AppButtons(
                   isPrimary: true,
                   text: "Create",
                   width: double.infinity,
-                  height: 50,
+                  height: 50.h,
                   onTap: () {
                     // Handle login logic here
                   },
                 ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.11),
+                 Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -163,7 +165,7 @@ class _CreateScreenState extends State<CreateScreen> {
                   ],
                 ),
               ],
-            ),
+            
           ),
         ),
       ),
