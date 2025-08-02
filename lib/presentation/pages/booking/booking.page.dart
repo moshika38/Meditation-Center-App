@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/booking.card.dart';
- 
+
 class BookingPage extends StatelessWidget {
   const BookingPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final List menuItems = [
+      "මාසික සමාජිකත්වය ලබා ගැනීම සඳහා",
+      "දානමය පිංකම් භාරගැනීම සඳහා",
+      "⁠සම්බුද්ධ වන්දානා පිංකම භාරගැනීම සඳහා",
+      "⁠ආලෝක පූජාව භාරගැනීම සඳහා",
+      "⁠විශේෂ පිංකම් පිළිබඳ විස්තර",
+      "⁠ඉදිරි වැඩසටහන් පෙළගැස්ම",
+      "⁠whatsapp එකමුතුවට සම්බන්ධ වීම සඳහා",
+      "⁠අප සන්නිවේදන ජාලය",
+      "⁠අප හා සම්බන්ධ වීමට",
+    ];
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: SingleChildScrollView(
@@ -28,13 +40,13 @@ class BookingPage extends StatelessWidget {
               ],
             ),
             ListView.builder(
-              itemCount: 10,
+              itemCount: menuItems.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, index) {
                 return BookingCard(
-                    text:
-                        "ශ්‍රී ලංකා භාවනා මධ්‍යස්ථානයේ උදෑසන දානය භාර ගැනීම සදහා ");
+                  text: menuItems[index],
+                );
               },
             )
           ],
