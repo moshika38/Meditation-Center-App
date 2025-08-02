@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:meditation_center/utils/app.colors.dart';
+import 'package:meditation_center/core/theme/app.colors.dart';
 
 class UserCard extends StatelessWidget {
   const UserCard({super.key});

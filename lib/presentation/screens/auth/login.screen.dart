@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/app.logo.dart';
-import 'package:meditation_center/utils/app.colors.dart';
+import 'package:meditation_center/core/alerts/app.alerts.dart';
+import 'package:meditation_center/core/theme/app.colors.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -101,6 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     icon: Icons.login,
                     onTap: () { 
                       context.push('/verify');
+                      AppAlerts.showCustomDialog(context: context, message: "message");
                        
                     },
                   ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_center/utils/app.colors.dart';
+import 'package:meditation_center/core/theme/app.colors.dart';
 
 class PlaylistBottomCard extends StatelessWidget {
   const PlaylistBottomCard({super.key});

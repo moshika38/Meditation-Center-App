@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meditation_center/presentation/screens/auth/Verify.screen.dart';
 import 'package:meditation_center/presentation/screens/auth/create.screen.dart';
 import 'package:meditation_center/presentation/screens/auth/forgot.password.dart';
 import 'package:meditation_center/presentation/screens/auth/login.screen.dart';
+import 'package:meditation_center/presentation/screens/auth/verify.screen.dart';
 import 'package:meditation_center/presentation/screens/main/main.screen.dart';
 import 'package:meditation_center/presentation/screens/settings/settings.screen.dart';
 import 'package:meditation_center/presentation/screens/splash/splash.screen.dart';

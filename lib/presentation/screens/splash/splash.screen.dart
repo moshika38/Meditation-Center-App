@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.logo.dart';
 import 'package:meditation_center/components/app.buttons.dart';
-import 'package:meditation_center/utils/app.colors.dart';
+import 'package:meditation_center/core/theme/app.colors.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
