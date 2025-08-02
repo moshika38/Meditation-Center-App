@@ -5,8 +5,7 @@ import 'package:meditation_center/core/firebase/firebase_options.dart';
 import 'package:meditation_center/routing/app.routing.dart';
 import 'package:meditation_center/core/theme/app.theme.dart';
 import 'package:device_preview/device_preview.dart';
-import 'package:provider/provider.dart';
-
+ 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -15,14 +14,20 @@ void main() async {
   runApp(
     DevicePreview(
       enabled: false,
-      builder: (context) => MultiProvider(
-        providers: [
-          // providers
-        ],
-        child: MyApp(),
+      builder: (context) =>  MyApp(),
       ),
-    ),
   );
+  // runApp(
+  //   DevicePreview(
+  //     enabled: false,
+  //     builder: (context) => MultiProvider(
+  //       providers: [
+  //         // providers
+  //       ],
+  //       child: MyApp(),
+  //     ),
+  //   ),
+  // );
 }
 
 class MyApp extends StatelessWidget {
