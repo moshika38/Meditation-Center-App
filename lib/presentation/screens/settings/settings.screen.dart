@@ -5,9 +5,15 @@ import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/user.card.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
+  @override
+  State<SettingsScreen> createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
+  bool isSwitch = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,10 +55,10 @@ class SettingsScreen extends StatelessWidget {
                 suffixIcon: Icons.cancel_sharp,
               ),
               const SizedBox(height: 10),
-              _buildLabel(context, "Phone number"),
+              _buildLabel(context, "Email address"),
               AppInput(
-                hintText: "+4 754215395",
-                prefixIcon: Icons.phone,
+                hintText: "user@gmail.com",
+                prefixIcon: Icons.email,
                 suffixIcon: Icons.cancel_sharp,
               ),
               const SizedBox(height: 40),
@@ -60,10 +66,36 @@ class SettingsScreen extends StatelessWidget {
                 child: AppButtons(
                   text: "Change",
                   isPrimary: false,
-                  width: 150,
-                  height: 40,
+                  width: double.infinity,
+                  height: 50,
                   icon: Icons.edit_calendar_outlined,
                 ),
+              ),
+                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    !isSwitch? "Switch to admin":"Switch to user ",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyMedium!
+                        .copyWith(color: AppColors.whiteColor),
+                  ),
+                  const SizedBox(width: 20),
+                   Switch(
+                    value: isSwitch,
+                    onChanged: (bool value) {
+                      setState(
+                        () {
+                          isSwitch = value;
+                        },
+                      );
+                    },
+                    activeColor: AppColors.whiteColor,
+                    inactiveThumbColor: Colors.grey,
+                  ),
+                ],
               ),
               Spacer(),
               Row(
