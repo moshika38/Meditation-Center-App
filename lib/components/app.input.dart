@@ -7,7 +7,7 @@ class AppInput extends StatefulWidget {
   final IconData suffixIcon;
   final TextEditingController? controller;
   final Function()? onTapIcon;
- 
+
   final bool? obscureText;
   const AppInput({
     super.key,
@@ -17,7 +17,7 @@ class AppInput extends StatefulWidget {
     this.controller,
     this.obscureText,
     this.onTapIcon,
-   });
+  });
 
   @override
   State<AppInput> createState() => _AppInputState();
@@ -33,11 +33,9 @@ class _AppInputState extends State<AppInput> {
         obscureText: widget.obscureText ?? false,
         style: Theme.of(context).textTheme.bodySmall,
         decoration: InputDecoration(
-
           filled: true,
-          fillColor:
-                 AppColors.whiteColor,
-                 
+            
+          fillColor: AppColors.whiteColor,
           prefixIcon: Icon(
             widget.prefixIcon,
             color: AppColors.textColor,

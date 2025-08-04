@@ -36,6 +36,7 @@ class AppTheme {
         color: AppColors.textColor,
         fontWeight: FontWeight.w400,
       ),
+       
     ),
   );
 }
