@@ -30,13 +30,14 @@ class AuthServices {
         password: password,
       );
       if (credential.user != null) {
+        sendEmailVerification(emailAddress);
         return 'Successfully';
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return 'The password provided is too weak.';
+        return 'The password provided is too weak';
       } else if (e.code == 'email-already-in-use') {
-        return 'The account already exists for that email.';
+        return 'The account already exists for that email';
       }
     } catch (e) {
       return e.toString();

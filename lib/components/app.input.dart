@@ -7,8 +7,9 @@ class AppInput extends StatefulWidget {
   final IconData suffixIcon;
   final TextEditingController? controller;
   final Function()? onTapIcon;
-
   final bool? obscureText;
+  final bool hasError;  
+
   const AppInput({
     super.key,
     required this.hintText,
@@ -17,6 +18,7 @@ class AppInput extends StatefulWidget {
     this.controller,
     this.obscureText,
     this.onTapIcon,
+    this.hasError = false,  
   });
 
   @override
@@ -34,11 +36,10 @@ class _AppInputState extends State<AppInput> {
         style: Theme.of(context).textTheme.bodySmall,
         decoration: InputDecoration(
           filled: true,
-            
           fillColor: AppColors.whiteColor,
           prefixIcon: Icon(
-            widget.prefixIcon,
-            color: AppColors.textColor,
+            widget.hasError?Icons.error: widget.prefixIcon, 
+            color:widget.hasError?Colors.red: AppColors.textColor,
             size: 20,
           ),
           suffixIcon: GestureDetector(
@@ -53,18 +54,20 @@ class _AppInputState extends State<AppInput> {
           hintStyle: Theme.of(context)
               .textTheme
               .bodySmall!
-              .copyWith(color: AppColors.gray),
+              .copyWith(
+                color: widget.hasError ? Colors.red : AppColors.gray,
+              ),
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100),
-            borderSide: const BorderSide(
-              color: AppColors.primaryColor,
+            borderSide: BorderSide(
+              color: widget.hasError ? Colors.red : AppColors.primaryColor,
               width: 1.5,
             ),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(100),
-            borderSide: const BorderSide(
-              color: AppColors.primaryColor,
+            borderSide: BorderSide(
+              color: widget.hasError ? Colors.red : AppColors.primaryColor,
               width: 1.5,
             ),
           ),
@@ -73,3 +76,4 @@ class _AppInputState extends State<AppInput> {
     );
   }
 }
+
