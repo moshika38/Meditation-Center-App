@@ -35,9 +35,9 @@ class AuthServices {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        return 'The password provided is too weak';
+        return 'errCode1';
       } else if (e.code == 'email-already-in-use') {
-        return 'The account already exists for that email';
+        return 'errCode2';
       }
     } catch (e) {
       return e.toString();
@@ -77,9 +77,9 @@ class AuthServices {
   // google authentication
 
   static Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser =
+    final GoogleSignInAccount googleUser =
         await GoogleSignIn.instance.authenticate();
-    final GoogleSignInAuthentication googleAuth = googleUser!.authentication;
+    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
     final credential =
         GoogleAuthProvider.credential(idToken: googleAuth.idToken);
     return await FirebaseAuth.instance.signInWithCredential(credential);

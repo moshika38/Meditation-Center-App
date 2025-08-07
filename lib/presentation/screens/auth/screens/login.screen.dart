@@ -50,136 +50,153 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+       
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 20),
-              Center(
-                child: AppLogo(
-                  width: 100,
-                  height: 100,
+        child: SizedBox(
+          height: double.infinity,
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(
+                  minHeight: constraints.maxHeight,
                 ),
-              ),
-              Spacer(),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Text(
-                  "Sign in to Continue",
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-              ),
-              SizedBox(height: 20),
-              AppInput(
-                hasError: isEmailError,
-                controller: emailController,
-                hintText: isEmailError
-                    ? "Please enter email address"
-                    : "Email address",
-                prefixIcon: Icons.email_outlined,
-                suffixIcon: Icons.cancel_sharp,
-                onTapIcon: () {
-                  setState(() {
-                    emailController.clear();
-                  });
-                },
-              ),
-              SizedBox(height: 20),
-              AppInput(
-                hasError: isEPassError,
-                controller: passwordController,
-                obscureText: obscureText,
-                hintText: isEPassError ? "Please enter password" : "Password",
-                prefixIcon: Icons.lock_outline,
-                suffixIcon: !obscureText
-                    ? Icons.visibility_off_outlined
-                    : Icons.visibility_outlined,
-                onTapIcon: () {
-                  setState(() {
-                    obscureText = !obscureText;
-                  });
-                },
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      context.push('/forgot');
-                    },
-                    child: Text(
-                      "Forgot password?",
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: AppColors.textColor,
+                  child: IntrinsicHeight(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Spacer(),
+                          Center(
+                            child: AppLogo(
+                              width: 100,
+                              height: 100,
+                            ),
                           ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: 20),
-              AppButtons(
-                isPrimary: true,
-                text: "Login",
-                width: double.infinity,
-                height: 50,
-                icon: Icons.login,
-                onTap: () {
-                  // context.push('/verify');
-                  login();
-                },
-              ),
-              Spacer(),
-              Center(
-                child: Text(
-                  "OR",
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                        color: AppColors.textColor,
+                          Spacer(),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10),
+                            child: Text(
+                              "Sign in to Continue",
+                              style: Theme.of(context).textTheme.bodyLarge,
+                            ),
+                          ),
+                          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                          AppInput(
+                            hasError: isEmailError,
+                            controller: emailController,
+                            hintText: isEmailError
+                                ? "Please enter email address"
+                                : "Email address",
+                            prefixIcon: Icons.email_outlined,
+                            suffixIcon: Icons.cancel_sharp,
+                            onTapIcon: () {
+                              setState(() {
+                                emailController.clear();
+                              });
+                            },
+                          ),
+                          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                          AppInput(
+                            hasError: isEPassError,
+                            controller: passwordController,
+                            obscureText: obscureText,
+                            hintText: isEPassError ? "Please enter password" : "Password",
+                            prefixIcon: Icons.lock_outline,
+                            suffixIcon: !obscureText
+                                ? Icons.visibility_off_outlined
+                                : Icons.visibility_outlined,
+                            onTapIcon: () {
+                              setState(() {
+                                obscureText = !obscureText;
+                              });
+                            },
+                          ),
+                          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {
+                                  context.push('/forgot');
+                                },
+                                child: Text(
+                                  "Forgot password?",
+                                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                        color: AppColors.textColor,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                          AppButtons(
+                            isPrimary: true,
+                            text: "Login",
+                            width: double.infinity,
+                            height: 50,
+                            icon: Icons.login,
+                            onTap: () {
+                              // context.push('/verify');
+                              login();
+                            },
+                          ),
+                          Spacer(),
+                          Center(
+                            child: Text(
+                              "OR",
+                              style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                    color: AppColors.textColor,
+                                  ),
+                            ),
+                          ),
+                          SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              _socialIcon("assets/icons/google.png", 40, 40),
+                              _socialIcon("assets/icons/facebook.png", 40, 40),
+                              _socialIcon("assets/icons/call.png", 38, 38),
+                            ],
+                          ),
+                          Spacer(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                "Don't have an account? ",
+                                style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                      color: AppColors.textColor,
+                                    ),
+                              ),
+                              SizedBox(
+                                width: 5,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  context.push('/create');
+                                },
+                                child: Text(
+                                  "Create",
+                                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                                        color: AppColors.primaryColor,
+                                      ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  _socialIcon("assets/icons/google.png", 40, 40),
-                  _socialIcon("assets/icons/facebook.png", 40, 40),
-                  _socialIcon("assets/icons/call.png", 38, 38),
-                ],
-              ),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    "Don't have an account? ",
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                          color: AppColors.textColor,
-                        ),
-                  ),
-                  SizedBox(
-                    width: 5,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      context.push('/create');
-                    },
-                    child: Text(
-                      "Create",
-                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                            color: AppColors.primaryColor,
-                          ),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+              );
+            }
           ),
         ),
       ),
