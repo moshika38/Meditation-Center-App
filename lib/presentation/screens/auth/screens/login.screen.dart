@@ -49,10 +49,10 @@ class _LoginScreenState extends State<LoginScreen> {
           AppTopSnackbar.showTopSnackBar(context, "Wrong password");
           EasyLoading.dismiss();
         } else if (result == 'Something went wrong') {
-          AppTopSnackbar.showTopSnackBar(context, "Something went wrong,check password again");
+          AppTopSnackbar.showTopSnackBar(context, "Something went wrong,check email and password again");
           EasyLoading.dismiss();
         } else if (result == 'Successfully') {
-          context.pushReplacement('/main');
+          context.pushReplacement('/main',);
         }
       } else {
         AppTopSnackbar.showTopSnackBar(context, "Please enter a valid email");
