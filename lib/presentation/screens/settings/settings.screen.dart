@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meditation_center/components/app.buttons.dart';
-import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/user.card.dart';
 import 'package:meditation_center/core/alerts/loading.popup.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
@@ -28,122 +26,150 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        leading: GestureDetector(
-          onTap: () {
+        backgroundColor: AppColors.whiteColor,
+        leading: IconButton(
+          onPressed: () {
             context.pop();
           },
-          child: const Icon(
-            Icons.arrow_back,
-            size: 16,
+          icon: Icon(
+            Icons.arrow_back_ios_new_rounded,
+            color: AppColors.textColor,
+            size: 20,
           ),
         ),
-        backgroundColor: AppColors.primaryColor,
         title: Text(
-          'Account settings',
+          'Settings',
           style: Theme.of(context)
               .textTheme
-              .bodyMedium!
-              .copyWith(color: AppColors.whiteColor),
+              .bodyLarge!
+              .copyWith(fontWeight: FontWeight.bold),
         ),
       ),
-      backgroundColor: AppColors.primaryColor,
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const SizedBox(height: 20),
-              Center(child: UserCard()),
-              const SizedBox(height: 20),
-              _buildLabel(context, "User name"),
-              AppInput(
-                hintText: "Jone Doe",
-                prefixIcon: Icons.person,
-                suffixIcon: Icons.cancel_sharp,
-              ),
-              const SizedBox(height: 10),
-              _buildLabel(context, "Email address"),
-              AppInput(
-                hintText: "user@gmail.com",
-                prefixIcon: Icons.email,
-                suffixIcon: Icons.cancel_sharp,
-              ),
-              const SizedBox(height: 40),
-              Center(
-                child: AppButtons(
-                  text: "Change",
-                  isPrimary: false,
-                  width: double.infinity,
-                  height: 50,
-                  icon: Icons.edit_calendar_outlined,
-                ),
-              ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    !isSwitch ? "Switch to admin" : "Switch to user ",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: AppColors.whiteColor),
-                  ),
-                  const SizedBox(width: 20),
-                  Switch(
-                    value: isSwitch,
-                    onChanged: (bool value) {
-                      setState(
-                        () {
-                          isSwitch = value;
-                        },
-                      );
-                    },
-                    activeColor: AppColors.whiteColor,
-                    inactiveThumbColor: Colors.grey,
-                  ),
-                ],
-              ),
-              Spacer(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.logout, size: 30, color: AppColors.whiteColor),
-                  const SizedBox(width: 8),
-                  GestureDetector(
-                    onTap: () {
-                      logOut();
-                    },
-                    child: Text(
-                      "Logout",
+        child: SizedBox(
+          width: double.infinity,
+          height: double.infinity,
+          child: SingleChildScrollView(
+            child: Center(
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                    UserCard(),
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+                    Text(
+                      "Jone Doe",
                       style: Theme.of(context)
                           .textTheme
-                          .bodySmall!
-                          .copyWith(color: AppColors.whiteColor),
+                          .bodyLarge!
+                          .copyWith(fontWeight: FontWeight.bold),
                     ),
-                  ),
-                ],
+                    SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                    _items(
+                      Icons.help,
+                      "Help & Support",
+                      "Get assistance",
+                      () {
+                        // ontap
+                      },
+                    ),
+                    _items(
+                      Icons.settings,
+                      "Account settings",
+                      "Manage your account",
+                      () {
+                        // ontap
+                      },
+                    ),
+                    _items(
+                      Icons.logout,
+                      "Logout",
+                      "Sing out of your account",
+                      () {
+                        logOut();
+                      },
+                    )
+                  ],
+                ),
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  Widget _buildLabel(BuildContext context, String text) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: Text(
-        text,
-        style: Theme.of(context)
-            .textTheme
-            .bodySmall!
-            .copyWith(color: AppColors.whiteColor),
+  Widget _items(
+    IconData icon,
+    String text,
+    String subText,
+    VoidCallback onTap,
+  ) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          decoration: BoxDecoration(
+            color: AppColors.secondaryColor.withOpacity(0.2),
+            borderRadius: BorderRadius.circular(20),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20),
+                      color: AppColors.primaryColor,
+                    ),
+                    child: Center(
+                      child: Padding(
+                        padding: const EdgeInsets.all(15),
+                        child: Icon(
+                          icon,
+                          color: AppColors.whiteColor,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        text,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium!
+                            .copyWith(fontWeight: FontWeight.bold),
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.45,
+                        child: Text(
+                          subText,
+                          style: Theme.of(context).textTheme.bodySmall,
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 1,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Icon(
+                  Icons.arrow_forward_ios_rounded,
+                  size: 20,
+                ),
+            ],
+          ),
+        ),
       ),
     );
   }

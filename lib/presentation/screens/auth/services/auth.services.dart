@@ -68,27 +68,40 @@ class AuthServices {
 
   // check if email is verified
   static Future<bool> isEmailVerified() async {
-  try {
-    final user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      await user.reload();
-      final refreshedUser = FirebaseAuth.instance.currentUser;
-      return refreshedUser?.emailVerified ?? false;
+    try {
+      final user = FirebaseAuth.instance.currentUser;
+      if (user != null) {
+        await user.reload();
+        final refreshedUser = FirebaseAuth.instance.currentUser;
+        return refreshedUser?.emailVerified ?? false;
+      }
+      return false;
+    } catch (e) {
+      print('Verification check error: $e');
+      return false;
     }
-    return false;
-  } catch (e) {
-    print('Verification check error: $e');
-    return false;
   }
-}
   // google authentication
 
-  static Future<UserCredential> signInWithGoogle() async {
-    final GoogleSignInAccount googleUser =
-        await GoogleSignIn.instance.authenticate();
-    final GoogleSignInAuthentication googleAuth = googleUser.authentication;
-    final credential =
-        GoogleAuthProvider.credential(idToken: googleAuth.idToken);
+  Future<UserCredential> signInWithGoogle() async {
+    final GoogleSignIn _googleSignIn = GoogleSignIn();
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+
+    if (googleUser == null) {
+      throw FirebaseAuthException(
+        code: 'ERROR_ABORTED_BY_USER',
+        message: 'Sign in aborted by user',
+      );
+    }
+
+    final GoogleSignInAuthentication googleAuth =
+        await googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
@@ -101,8 +114,6 @@ class AuthServices {
     }
   }
 
-
-
   // check if  email is valid
   static bool isValidEmail(String email) {
     final emailRegex = RegExp(
@@ -110,5 +121,4 @@ class AuthServices {
     );
     return emailRegex.hasMatch(email);
   }
-
 }

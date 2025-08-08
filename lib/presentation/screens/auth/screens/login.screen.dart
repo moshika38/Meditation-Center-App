@@ -46,10 +46,13 @@ class _LoginScreenState extends State<LoginScreen> {
           AppTopSnackbar.showTopSnackBar(context, "Wrong password");
           EasyLoading.dismiss();
         } else if (result == 'Something went wrong') {
-          AppTopSnackbar.showTopSnackBar(context, "Something went wrong,check email and password again");
+          AppTopSnackbar.showTopSnackBar(
+              context, "Something went wrong,check email and password again");
           EasyLoading.dismiss();
         } else if (result == 'Successfully') {
-          context.pushReplacement('/main',);
+          context.pushReplacement(
+            '/main',
+          );
           EasyLoading.dismiss();
         }
       } else {
@@ -74,7 +77,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 child: IntrinsicHeight(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 20),
+                      horizontal: 30,
+                      vertical: 20,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -159,7 +164,6 @@ class _LoginScreenState extends State<LoginScreen> {
                           height: 50,
                           icon: Icons.login,
                           onTap: () {
-                            // context.push('/verify');
                             login();
                           },
                         ),
@@ -179,9 +183,20 @@ class _LoginScreenState extends State<LoginScreen> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            _socialIcon("assets/icons/google.png", 40, 40),
+                            GestureDetector(
+                                onTap: () async {
+                                  LoadingPopup.show('Logging...');
+                                  final status =
+                                      await AuthServices().signInWithGoogle();
+                                  if (status.user!.uid != '') {
+                                    context.pushReplacement('/main');
+                                    EasyLoading.dismiss();
+                                  }
+                                },
+                                child: _socialIcon(
+                                    "assets/icons/google.png", 40, 40)),
+                            SizedBox(width: 5),
                             _socialIcon("assets/icons/facebook.png", 40, 40),
-                            _socialIcon("assets/icons/call.png", 38, 38),
                           ],
                         ),
                         Spacer(),

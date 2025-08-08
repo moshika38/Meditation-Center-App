@@ -15,6 +15,7 @@ class AppRouting {
   final GoRouter appRouter = GoRouter(
     navigatorKey: _rootNavigatorKey,
     initialLocation: FirebaseAuth.instance.currentUser != null ? '/main' : '/',
+    // initialLocation: '/',
     routes: [
       GoRoute(
         path: '/',
