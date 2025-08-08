@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/app.logo.dart';
+import 'package:meditation_center/core/alerts/app.loading.dart';
+import 'package:meditation_center/core/alerts/app.top.snackbar.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
+import 'package:meditation_center/presentation/screens/auth/services/auth.services.dart';
 
 class ForgotPassword extends StatefulWidget {
   const ForgotPassword({super.key});
@@ -14,6 +18,32 @@ class ForgotPassword extends StatefulWidget {
 
 class _ForgotPasswordState extends State<ForgotPassword> {
   TextEditingController forgotPasswordController = TextEditingController();
+  bool isErr = false;
+
+  void reset() {
+    setState(() {
+      isErr = forgotPasswordController.text.isEmpty;
+    });
+
+    if (!isErr) {
+      EasyLoading.show(
+          status: 'Sending...',
+          indicator: AppLoading(),
+          maskType: EasyLoadingMaskType.black);
+
+      if (AuthServices.isValidEmail(forgotPasswordController.text)) {
+        // send reset password link
+        AuthServices.resetPassword(forgotPasswordController.text);
+        EasyLoading.dismiss();
+        EasyLoading.showSuccess('Successfully !',
+            duration: Duration(seconds: 2));
+      } else {
+        AppTopSnackbar.showTopSnackBar(context, "Please enter a valid email");
+        EasyLoading.dismiss();
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,74 +52,75 @@ class _ForgotPasswordState extends State<ForgotPassword> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05.h),
-                Center(
-                  child: AppLogo(
-                    width: 100.w,
-                    height: 100.h,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05.h),
+              Center(
+                child: AppLogo(
+                  width: 100.w,
+                  height: 100.h,
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05.h),
+              Text(
+                "Forgot Password",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              Text(
+                "Enter your email address to receive a link to reset your password.",
+                style: Theme.of(context).textTheme.bodySmall,
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02.h),
+              AppInput(
+                hasError: isErr,
+                controller: forgotPasswordController,
+                hintText:
+                    isErr ? ": Please enter email address" : "Email address",
+                prefixIcon: Icons.email_outlined,
+                suffixIcon: Icons.cancel_sharp,
+                onTapIcon: () {
+                  setState(() {
+                    forgotPasswordController.clear();
+                  });
+                },
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03.h),
+              AppButtons(
+                icon: Icons.send,
+                isPrimary: true,
+                text: "Send",
+                width: double.infinity,
+                height: 50,
+                onTap: () {
+                  reset();
+                },
+              ),
+              Spacer(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.arrow_back_ios_new_rounded,
+                    color: AppColors.primaryColor,
+                    size: 15,
                   ),
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05.h),
-                Text(
-                  "Forgot Password",
-                  style: Theme.of(context).textTheme.bodyLarge,
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                Text(
-                  "Enter your email address to receive a link to reset your password.",
-                  style: Theme.of(context).textTheme.bodySmall,
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.02.h),
-                AppInput(
-                  controller: forgotPasswordController,
-                  hintText: "Email address",
-                  prefixIcon: Icons.email_outlined,
-                  suffixIcon: Icons.cancel_sharp,
-                  onTapIcon: () {
-                    setState(() {
-                      forgotPasswordController.clear();
-                    });
-                  },
-                ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.03.h),
-                AppButtons(
-                  icon: Icons.send  ,
-                  isPrimary: true,
-                  text: "Send",
-                  width: double.infinity,
-                  height: 50,
-                  onTap: () {
-                    // Handle login logic here
-                  },
-                ),
-                Spacer(),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      color: AppColors.primaryColor,
-                      size: 15,
+                  SizedBox(width: 5),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Text(
+                      "Back to login",
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                            color: AppColors.primaryColor,
+                          ),
                     ),
-                    SizedBox(width: 5),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text(
-                        "Back to login",
-                        style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                              color: AppColors.primaryColor,
-                            ),
-                      ),
-                    ),
-                  ],
-                )
-              ],
-            
+                  ),
+                ],
+              )
+            ],
           ),
         ),
       ),
