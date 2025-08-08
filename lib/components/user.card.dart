@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_center/core/theme/app.colors.dart';
-
+ 
 class UserCard extends StatelessWidget {
   const UserCard({super.key});
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 120,
-      height: 130,
+      width: 100,
+      height: 100,
       child: Stack(
         children: [
           Center(
@@ -19,20 +18,7 @@ class UserCard extends StatelessWidget {
               ),
             ),
           ),
-          Align(
-            alignment: Alignment(0.9, 0.9),
-            child: Container(
-                padding: const EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Icon(
-                  Icons.camera_alt_outlined,
-                  size: 40,
-                  color: AppColors.whiteColor,
-                )),
-          ),
+          
         ],
       ),
     );

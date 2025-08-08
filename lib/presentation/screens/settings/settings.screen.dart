@@ -26,78 +26,100 @@ class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+        backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
-        backgroundColor: AppColors.whiteColor,
+        backgroundColor: AppColors.primaryColor,
         leading: IconButton(
           onPressed: () {
             context.pop();
           },
           icon: Icon(
             Icons.arrow_back_ios_new_rounded,
-            color: AppColors.textColor,
+            color: AppColors.whiteColor,
             size: 20,
           ),
         ),
         title: Text(
           'Settings',
-          style: Theme.of(context)
-              .textTheme
-              .bodyLarge!
-              .copyWith(fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontWeight: FontWeight.bold,
+                color: AppColors.whiteColor,
+              ),
         ),
       ),
       body: SafeArea(
-        child: SizedBox(
-          width: double.infinity,
-          height: double.infinity,
-          child: SingleChildScrollView(
-            child: Center(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    UserCard(),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-                    Text(
-                      "Jone Doe",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyLarge!
-                          .copyWith(fontWeight: FontWeight.bold),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return SingleChildScrollView(
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: constraints.maxHeight),
+                child: IntrinsicHeight(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 20),
+                    child: Column(
+                      
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                        UserCard(),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.01),
+                        Text(
+                          "Jone Doe",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyLarge!
+                              .copyWith(fontWeight: FontWeight.bold, color: AppColors.whiteColor),
+                        ),
+                        Text(
+                          "moshika38@gmail.com",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall!
+                              .copyWith(fontWeight: FontWeight.bold, color: AppColors.whiteColor),
+                        ),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+                        _items(
+                          Icons.help,
+                          "Help & Support",
+                          "Get assistance",
+                          () {
+                            // ontap
+                          },
+                        ),
+                        _items(
+                          Icons.settings,
+                          "Account settings",
+                          "Manage your account",
+                          () {
+                            // ontap
+                          },
+                        ),
+                        _items(
+                          Icons.logout,
+                          "Logout",
+                          "Sign out of your account",
+                          () {
+                            logOut();
+                          },
+                        ),
+
+                        // This pushes footer to bottom if content is less
+                        Spacer(),
+
+                        // Footer
+                        Text(
+                          "v 0.0.1",
+                          style: Theme.of(context).textTheme.bodyMedium!.copyWith(color: AppColors.whiteColor),
+                        ),
+                      ],
                     ),
-                    SizedBox(height: MediaQuery.of(context).size.height * 0.05),
-                    _items(
-                      Icons.help,
-                      "Help & Support",
-                      "Get assistance",
-                      () {
-                        // ontap
-                      },
-                    ),
-                    _items(
-                      Icons.settings,
-                      "Account settings",
-                      "Manage your account",
-                      () {
-                        // ontap
-                      },
-                    ),
-                    _items(
-                      Icons.logout,
-                      "Logout",
-                      "Sing out of your account",
-                      () {
-                        logOut();
-                      },
-                    )
-                  ],
+                  ),
                 ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       ),
     );
@@ -114,9 +136,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
           decoration: BoxDecoration(
-            color: AppColors.secondaryColor.withOpacity(0.2),
+            color: AppColors.whiteColor.withOpacity(0.2),
             borderRadius: BorderRadius.circular(20),
           ),
           child: Row(
@@ -127,14 +149,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color: AppColors.primaryColor,
+                      color: AppColors.whiteColor,
                     ),
                     child: Center(
                       child: Padding(
                         padding: const EdgeInsets.all(15),
                         child: Icon(
                           icon,
-                          color: AppColors.whiteColor,
+                          color: AppColors.primaryColor,
                         ),
                       ),
                     ),
@@ -148,13 +170,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium!
-                            .copyWith(fontWeight: FontWeight.bold),
+                            .copyWith(fontWeight: FontWeight.bold,color: AppColors.whiteColor),
                       ),
                       SizedBox(
                         width: MediaQuery.of(context).size.width * 0.45,
                         child: Text(
                           subText,
-                          style: Theme.of(context).textTheme.bodySmall,
+                          style: Theme.of(context).textTheme.bodySmall!.copyWith(color: AppColors.whiteColor),
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
@@ -164,9 +186,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
               Icon(
-                  Icons.arrow_forward_ios_rounded,
-                  size: 20,
-                ),
+                Icons.arrow_forward_ios_rounded,
+                size: 20,
+                color: AppColors.whiteColor,
+              ),
             ],
           ),
         ),
