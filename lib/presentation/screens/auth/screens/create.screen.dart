@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/app.logo.dart';
+import 'package:meditation_center/core/alerts/app.loading.dart';
 import 'package:meditation_center/core/alerts/app.top.snackbar.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
 import 'package:meditation_center/presentation/screens/auth/services/auth.services.dart';
@@ -29,51 +31,57 @@ class _CreateScreenState extends State<CreateScreen> {
   bool isComPassError = false;
 
   void create() async {
-    if (nameController.text.isEmpty) {
-      isNameError = true;
-      setState(() {});
-    } else {
-      isNameError = false;
-      setState(() {});
-    }
-    if (emailController.text.isEmpty) {
-      isEmailError = true;
-      setState(() {});
-    } else {
-      isEmailError = false;
-      setState(() {});
-    }
-    if (passwordController.text.isEmpty) {
-      isPassError = true;
-      setState(() {});
-    } else {
-      isPassError = false;
-      setState(() {});
-    }
-    if (conformPasswordController.text.isEmpty) {
-      isComPassError = true;
-      setState(() {});
-    } else {
-      isComPassError = false;
-      setState(() {});
-    }
-    if (passwordController.text != conformPasswordController.text) {
-      AppTopSnackbar.showTopSnackBar(context, "Passwords do not match");
-    }else if(isValidEmail(emailController.text)==false){
-      AppTopSnackbar.showTopSnackBar(context, "Please enter a valid email");
-    }else{
-      final result =await AuthServices.createAccountWithEmailAndPassword(emailController.text, passwordController.text);
-      
-    }
-    
-  }
+    setState(() {
+      isNameError = nameController.text.isEmpty;
+      isEmailError = emailController.text.isEmpty;
+      isPassError = passwordController.text.isEmpty;
+      isComPassError = conformPasswordController.text.isEmpty;
+    });
 
-  bool isValidEmail(String email) {
-      final emailRegex = RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
-      );
-      return emailRegex.hasMatch(email);
+    if (!isNameError && !isEmailError && !isPassError && !isComPassError) {
+      if (AuthServices.isValidEmail(emailController.text)) {
+        if (passwordController.text == conformPasswordController.text) {
+          if (!isAgree) {
+            AppTopSnackbar.showTopSnackBar(
+                context, "Please accept the terms and conditions");
+            return;
+          }
+          // show loading
+          EasyLoading.show(
+              status: 'Creating...',
+              indicator: AppLoading(),
+              maskType: EasyLoadingMaskType.black);
+
+          final result = await AuthServices.createAccountWithEmailAndPassword(
+            emailController.text,
+            passwordController.text,
+          );
+
+          if (result == 'Successfully') {
+            await AuthServices.sendEmailVerification(emailController.text);
+            EasyLoading.dismiss();
+            EasyLoading.showSuccess('Successfully !',
+                duration: Duration(seconds: 2));
+            context.push('/verify');
+            // navigate to verify screen
+          } else if (result == 'errCode1') {
+            AppTopSnackbar.showTopSnackBar(context, "Password is too weak");
+            EasyLoading.dismiss();
+          } else if (result == 'errCode2') {
+            AppTopSnackbar.showTopSnackBar(context, "Email already in use");
+            EasyLoading.dismiss();
+          } else {
+            AppTopSnackbar.showTopSnackBar(context, "Unknown error occurred.");
+            EasyLoading.dismiss();
+          }
+        } else {
+          AppTopSnackbar.showTopSnackBar(context, "Passwords do not match");
+        }
+      } else {
+        AppTopSnackbar.showTopSnackBar(context, "Please enter a valid email");
+      }
     }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -92,7 +100,7 @@ class _CreateScreenState extends State<CreateScreen> {
                 child: IntrinsicHeight(
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 30, vertical: 10),
+                        horizontal: 30, vertical: 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [

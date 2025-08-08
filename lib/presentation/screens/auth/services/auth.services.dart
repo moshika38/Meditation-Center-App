@@ -3,7 +3,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthServices {
   // password authentication
-  static Future<String> signInWithEmail(String emailAddress, String password) async {
+  static Future<String> signInWithEmail(
+      String emailAddress, String password) async {
     try {
       final credential = await FirebaseAuth.instance
           .signInWithEmailAndPassword(email: emailAddress, password: password);
@@ -12,9 +13,9 @@ class AuthServices {
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        return 'User not found';
+        return 'errCode1';
       } else if (e.code == 'wrong-password') {
-        return 'Wrong password';
+        return 'errCode2';
       }
     }
     return 'Something went wrong';
@@ -67,13 +68,19 @@ class AuthServices {
 
   // check if email is verified
   static Future<bool> isEmailVerified() async {
-    try {
-      final user = FirebaseAuth.instance.currentUser;
-      return user!.emailVerified;
-    } catch (e) {
-      return false;
+  try {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      await user.reload();
+      final refreshedUser = FirebaseAuth.instance.currentUser;
+      return refreshedUser?.emailVerified ?? false;
     }
+    return false;
+  } catch (e) {
+    print('Verification check error: $e');
+    return false;
   }
+}
   // google authentication
 
   static Future<UserCredential> signInWithGoogle() async {
@@ -93,4 +100,15 @@ class AuthServices {
       print(e);
     }
   }
+
+
+
+  // check if  email is valid
+  static bool isValidEmail(String email) {
+    final emailRegex = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+",
+    );
+    return emailRegex.hasMatch(email);
+  }
+
 }
