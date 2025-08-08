@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/presentation/screens/auth/screens/create.screen.dart';
@@ -13,7 +14,7 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 class AppRouting {
   final GoRouter appRouter = GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/',
+    initialLocation: FirebaseAuth.instance.currentUser != null ? '/main' : '/',
     routes: [
       GoRoute(
         path: '/',

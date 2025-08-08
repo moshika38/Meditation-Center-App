@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/user.card.dart';
+import 'package:meditation_center/core/alerts/loading.popup.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
+import 'package:meditation_center/presentation/screens/auth/services/auth.services.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
@@ -14,6 +17,14 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool isSwitch = false;
+
+  logOut() {
+    LoadingPopup.show('Logging out...');
+    AuthServices.logOut();
+    context.pushReplacement('/login');
+    EasyLoading.dismiss();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,19 +82,19 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   icon: Icons.edit_calendar_outlined,
                 ),
               ),
-                SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.05),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    !isSwitch? "Switch to admin":"Switch to user ",
+                    !isSwitch ? "Switch to admin" : "Switch to user ",
                     style: Theme.of(context)
                         .textTheme
                         .bodyMedium!
                         .copyWith(color: AppColors.whiteColor),
                   ),
                   const SizedBox(width: 20),
-                   Switch(
+                  Switch(
                     value: isSwitch,
                     onChanged: (bool value) {
                       setState(
@@ -103,12 +114,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 children: [
                   Icon(Icons.logout, size: 30, color: AppColors.whiteColor),
                   const SizedBox(width: 8),
-                  Text(
-                    "Logout",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(color: AppColors.whiteColor),
+                  GestureDetector(
+                    onTap: () {
+                      logOut();
+                    },
+                    child: Text(
+                      "Logout",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(color: AppColors.whiteColor),
+                    ),
                   ),
                 ],
               ),

@@ -3,8 +3,8 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/app.logo.dart';
-import 'package:meditation_center/core/alerts/app.loading.dart';
 import 'package:meditation_center/core/alerts/app.top.snackbar.dart';
+import 'package:meditation_center/core/alerts/loading.popup.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
 import 'package:meditation_center/presentation/screens/auth/services/auth.services.dart';
 
@@ -25,10 +25,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
     });
 
     if (!isErr) {
-      EasyLoading.show(
-          status: 'Sending...',
-          indicator: AppLoading(),
-          maskType: EasyLoadingMaskType.black);
+      
+          LoadingPopup.show('Sending...');
 
       if (AuthServices.isValidEmail(forgotPasswordController.text)) {
         // send reset password link

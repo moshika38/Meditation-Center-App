@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.buttons.dart';
-import 'package:meditation_center/core/alerts/app.loading.dart';
 import 'package:meditation_center/core/alerts/app.top.snackbar.dart';
+import 'package:meditation_center/core/alerts/loading.popup.dart';
 import 'package:meditation_center/presentation/screens/auth/services/auth.services.dart';
 
 class VerifyScreen extends StatelessWidget {
@@ -14,10 +14,8 @@ class VerifyScreen extends StatelessWidget {
     final theme = Theme.of(context);
 
     void verify() async {
-      EasyLoading.show(
-          status: 'Verifying...',
-          indicator: AppLoading(),
-          maskType: EasyLoadingMaskType.black);
+      
+          LoadingPopup.show('Verifying...');
 
       final result = await AuthServices.isEmailVerified();
       if (result) {

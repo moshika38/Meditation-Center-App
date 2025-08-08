@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/app.logo.dart';
-import 'package:meditation_center/core/alerts/app.loading.dart';
 import 'package:meditation_center/core/alerts/app.top.snackbar.dart';
+import 'package:meditation_center/core/alerts/loading.popup.dart';
 
 import 'package:meditation_center/core/theme/app.colors.dart';
 import 'package:meditation_center/presentation/screens/auth/services/auth.services.dart';
@@ -35,10 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // continue login
     if (!isEPassError && !isEmailError) {
       if (AuthServices.isValidEmail(emailController.text)) {
-        EasyLoading.show(
-            status: 'Logging...',
-            indicator: AppLoading(),
-            maskType: EasyLoadingMaskType.black);
+        LoadingPopup.show('Logging...');
         final result = await AuthServices.signInWithEmail(
             emailController.text, passwordController.text);
 
@@ -53,6 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           EasyLoading.dismiss();
         } else if (result == 'Successfully') {
           context.pushReplacement('/main',);
+          EasyLoading.dismiss();
         }
       } else {
         AppTopSnackbar.showTopSnackBar(context, "Please enter a valid email");
