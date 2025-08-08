@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/core/alerts/app.loading.dart';
@@ -43,19 +42,19 @@ class VerifyScreen extends StatelessWidget {
                 size: 80,
                 color: theme.primaryColor,
               ),
-              SizedBox(height: 32.h),
+              SizedBox(height: 32),
               Text(
                 'Check your inbox',
                 style: theme.textTheme.bodyLarge,
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 16.h),
+              SizedBox(height: 16),
               Text(
                 'We\'ve sent a verification link to your email address. Please check your inbox and click the link to verify your account.',
                 style: theme.textTheme.bodySmall,
                 textAlign: TextAlign.center,
               ),
-              SizedBox(height: 40.h),
+              SizedBox(height: 40),
               AppButtons(
                 text: "Verify",
                 isPrimary: true,
@@ -66,13 +65,13 @@ class VerifyScreen extends StatelessWidget {
                   verify();
                 },
               ),
-              SizedBox(height: 50.h),
+              SizedBox(height: 50),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Icon(Icons.arrow_back_ios_new_rounded,
-                      color: theme.primaryColor, size: 14.h),
-                  SizedBox(width: 8.h),
+                      color: theme.primaryColor, size: 14),
+                  SizedBox(width: 8),
                   GestureDetector(
                     onTap: () {
                       context.pop();

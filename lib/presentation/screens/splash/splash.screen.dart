@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:go_router/go_router.dart';
 import 'package:meditation_center/components/app.logo.dart';
 import 'package:meditation_center/components/app.buttons.dart';
@@ -21,7 +20,7 @@ class SplashScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.05.h,
+                  height: MediaQuery.of(context).size.height * 0.05,
                 ),
                 AppLogo(),
                 SizedBox(

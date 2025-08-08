@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:meditation_center/components/app.buttons.dart';
 import 'package:meditation_center/components/app.input.dart';
 import 'package:meditation_center/components/app.logo.dart';
@@ -54,14 +53,14 @@ class _ForgotPasswordState extends State<ForgotPassword> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05.h),
+              Spacer(),
               Center(
                 child: AppLogo(
-                  width: 100.w,
-                  height: 100.h,
+                  width: 100,
+                  height: 100,
                 ),
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.05.h),
+              Spacer(),
               Text(
                 "Forgot Password",
                 style: Theme.of(context).textTheme.bodyLarge,
@@ -71,7 +70,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                 "Enter your email address to receive a link to reset your password.",
                 style: Theme.of(context).textTheme.bodySmall,
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02.h),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               AppInput(
                 hasError: isErr,
                 controller: forgotPasswordController,
@@ -85,7 +84,7 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   });
                 },
               ),
-              SizedBox(height: MediaQuery.of(context).size.height * 0.03.h),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.03),
               AppButtons(
                 icon: Icons.send,
                 isPrimary: true,
@@ -96,6 +95,8 @@ class _ForgotPasswordState extends State<ForgotPassword> {
                   reset();
                 },
               ),
+              Spacer(),
+              Spacer(),
               Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
