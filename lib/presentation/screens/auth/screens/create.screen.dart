@@ -53,6 +53,7 @@ class _CreateScreenState extends State<CreateScreen> {
             emailController.text,
             passwordController.text,
           );
+            if (!mounted) return;
 
           if (result == 'Successfully') {
             await AuthServices.sendEmailVerification(emailController.text);

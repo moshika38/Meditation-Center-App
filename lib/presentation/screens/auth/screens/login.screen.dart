@@ -34,10 +34,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
     // continue login
     if (!isEPassError && !isEmailError) {
+      
       if (AuthServices.isValidEmail(emailController.text)) {
         LoadingPopup.show('Logging...');
         final result = await AuthServices.signInWithEmail(
             emailController.text, passwordController.text);
+
+              if (!mounted) return;
 
         if (result == 'errCode1') {
           AppTopSnackbar.showTopSnackBar(context, "User not found");
@@ -47,7 +50,7 @@ class _LoginScreenState extends State<LoginScreen> {
           EasyLoading.dismiss();
         } else if (result == 'Something went wrong') {
           AppTopSnackbar.showTopSnackBar(
-              context, "Something went wrong,check email and password again");
+              context, "invalid email or password");
           EasyLoading.dismiss();
         } else if (result == 'Successfully') {
           context.pushReplacement(

@@ -1,22 +1,59 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:meditation_center/data/models/user.model.dart';
 import 'package:meditation_center/presentation/pages/booking/booking.page.dart';
 import 'package:meditation_center/presentation/pages/home/home.page.dart';
 import 'package:meditation_center/presentation/pages/notification/notification.page.dart';
 import 'package:meditation_center/presentation/pages/post/post.page.dart';
 import 'package:meditation_center/presentation/pages/chat%20room/chat.room.page.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
+import 'package:meditation_center/services/user.services.dart';
 
-class MainScreen extends StatelessWidget {
+class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
+
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
+  void checkUser() async {
+    final isUserIdExists = await UserServices()
+        .isUserIdExists(FirebaseAuth.instance.currentUser!.uid);
+
+    if (!isUserIdExists) {
+      final currentUser = FirebaseAuth.instance.currentUser;
+      if (currentUser != null) {
+        UserServices().addNewUser(
+          UserModel(
+            name: currentUser.displayName.toString(),
+            email: currentUser.email.toString(),
+            uid: currentUser.uid.toString(),
+            profileImage: currentUser.photoURL.toString(),
+            isAdmin: false,
+          ),
+        );
+      } else {
+        if (!mounted) return;
+        context.push('/login');
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // checkUser status
+    checkUser();
+  }
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 5, // number of tabs
+      length: 5,
       child: Builder(
         builder: (BuildContext innerContext) {
-          // final controller = DefaultTabController.of(innerContext);
           return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,

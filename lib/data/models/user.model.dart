@@ -7,7 +7,7 @@ class UserModel {
   final bool isAdmin;
 
   UserModel({
-    required this.id,
+    this.id,
     required this.name,
     required this.email,
     required this.uid,
