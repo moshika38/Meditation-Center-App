@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_center/components/app.buttons.dart';
-import 'package:meditation_center/components/booking.card.dart';
+import 'package:meditation_center/presentation/components/app.buttons.dart';
+import 'package:meditation_center/presentation/components/booking.card.dart';
 
 class BookingPage extends StatelessWidget {
   const BookingPage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_center/components/notification.card.dart';
+import 'package:meditation_center/presentation/components/notification.card.dart';
 
 class NotificationPage extends StatelessWidget {
   const NotificationPage({super.key});

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_center/components/notice.card.dart';
+import 'package:meditation_center/presentation/components/notice.card.dart';
 
 class HomePage extends StatelessWidget {
    

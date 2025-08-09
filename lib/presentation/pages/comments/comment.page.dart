@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_center/components/comment.card.dart';
+import 'package:meditation_center/presentation/components/comment.card.dart';
 
 class CommentPage {
   static bottomSheet(BuildContext context) {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_center/components/app.input.dart';
-import 'package:meditation_center/components/comment.card.dart';
+import 'package:meditation_center/presentation/components/app.input.dart';
+import 'package:meditation_center/presentation/components/comment.card.dart';
 
 class ChatRoomPage extends StatelessWidget {
   const ChatRoomPage({super.key});

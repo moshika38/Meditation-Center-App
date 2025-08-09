@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meditation_center/components/app.logo.dart';
-import 'package:meditation_center/components/app.buttons.dart';
+import 'package:meditation_center/presentation/components/app.logo.dart';
+import 'package:meditation_center/presentation/components/app.buttons.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
 
 class SplashScreen extends StatelessWidget {

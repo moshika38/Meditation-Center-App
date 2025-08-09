@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meditation_center/components/app.buttons.dart';
+import 'package:meditation_center/presentation/components/app.buttons.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
 
 class PostPage extends StatelessWidget {

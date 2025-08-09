@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meditation_center/components/user.card.dart';
+import 'package:meditation_center/presentation/components/user.card.dart';
 import 'package:meditation_center/core/alerts/loading.popup.dart';
 import 'package:meditation_center/core/theme/app.colors.dart';
 import 'package:meditation_center/presentation/screens/auth/services/auth.services.dart';

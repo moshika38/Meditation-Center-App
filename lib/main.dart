@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:meditation_center/core/firebase/firebase_options.dart';
+import 'package:meditation_center/data/firebase/firebase_options.dart';
 import 'package:meditation_center/routing/app.routing.dart';
 import 'package:meditation_center/core/theme/app.theme.dart';
 import 'package:device_preview/device_preview.dart';

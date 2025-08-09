@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:go_router/go_router.dart';
-import 'package:meditation_center/components/app.buttons.dart';
+import 'package:meditation_center/presentation/components/app.buttons.dart';
 import 'package:meditation_center/core/alerts/app.top.snackbar.dart';
 import 'package:meditation_center/core/alerts/loading.popup.dart';
 import 'package:meditation_center/presentation/screens/auth/services/auth.services.dart';
